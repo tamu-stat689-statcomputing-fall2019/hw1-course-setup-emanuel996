@@ -5,7 +5,11 @@
 # seed  - starting seed value
 generateY <- function(X, beta, sigma, seed = 5832652){
   #[ToDo] Set seed and generate Y following linear model
-  
+  set.seed(seed)
+  #  epsilon for each dimension is N(0, sigma^2) , independent 
+  epsilon <- rnorm(n, mean=0, sd=sigma)
+  # linear regression model Y = Xbeta + epsilon
+  Y <- X %*% beta + epsilon
   # Return Y
   return(Y)
 }
