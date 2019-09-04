@@ -19,14 +19,17 @@ generateY <- function(X, beta, sigma, seed = 5832652){
 # Y -response
 calculateBeta <- function(X, Y){
   # Calculate beta_LS
-  
+  beta_LS <- solve(crossprod(X),crossprod(X,Y))
+  # pick b that minimizes the squared distance: ||Y - Xb||^2
+  # take differentiation, we have the normal equation: X^T * X * b = X^T * Y
+  # that is, b = (X^T * X)^-1 * X^T * Y 
   # Return beta
   return(beta_LS)
 }
 
 # Calculate MSE
 calculateMSE <- function(beta, beta_LS){
-  
+  MSE <- norm(beta - beta_LS, "2")^2
   # Return MSE - error ||beta - beta_LS||_2^2
   return(MSE)
 }
